@@ -22,9 +22,9 @@ namespace Bakery.BakedGoods
       Price = price;
     }
 
-    public static int CalculateBread(int breadNumber, int breadPrice)
+    public static int CalculateBread(double breadNumber, int breadPrice)
     {
-      int breadDeal = breadNumber - Math.Floor(breadNumber / 3);
+      int breadDeal = Convert.ToInt32(breadNumber - Math.Floor(breadNumber / 3));
       int breadTotalCost = breadDeal * Price;
       return breadTotalCost;
     }
@@ -38,9 +38,9 @@ namespace Bakery.BakedGoods
       Price = price;
     }
 
-    public static int CalculatePastry(int pastryNumber, int pastryPrice)
+    public static int CalculatePastry(double pastryNumber, int pastryPrice)
     {
-      int pastryTotalCost = pastryNumber * pastryPrice - Math.Floor(pastryNumber / 3);
+      int pastryTotalCost = Convert.ToInt32(pastryNumber * pastryPrice - Math.Floor(pastryNumber / 3));
       return pastryTotalCost;
     }
   }
