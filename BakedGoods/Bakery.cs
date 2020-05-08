@@ -7,7 +7,8 @@ namespace Bakery.BakedGoods
   {
     public string Name { get; set; }
     private static Dictionary<string,int> _orderTotals = new Dictionary<string, int> {};
-    public static int OrderPrice { get; set; }
+    public int OrderPrice { get; set; }
+    public static bool ContinueOrdering = true;
 
     public Order (string name)
     {
@@ -18,6 +19,11 @@ namespace Bakery.BakedGoods
     public void AddToOrder(int cost)
     {
       OrderPrice += cost;
+    }
+
+    public static void DoneOrdering()
+    {
+      ContinueOrdering = false;
     }
   }
 
