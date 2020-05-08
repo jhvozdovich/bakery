@@ -106,11 +106,7 @@ namespace Bakery
 
       string continueAnswer = Console.ReadLine().ToLower();
 
-      if (continueAnswer == "y" || continueAnswer == "yes")
-      {
-        BeginOrder();
-      }
-      else
+      if (continueAnswer == "n" || continueAnswer == "no")
       {
         Order.DoneOrdering();
       }
