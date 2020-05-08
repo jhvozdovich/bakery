@@ -95,11 +95,6 @@ namespace Bakery
     public static int PastryOrder()
     {
       Pastry pastry = new Pastry("pastry", 2);
-      Pastry painAuChocolat = new Pastry("pain au chocolat", 2);
-      Pastry croissant = new Pastry("croissant", 2);
-      Pastry strudel = new Pastry("strudel", 2);
-      Pastry creamPuff = new Pastry("cream puff", 2);
-      Pastry tartlet = new Pastry("tartlet", 2);
 
       Console.WriteLine("What kind of pastry would you like?");
       Console.WriteLine("1: Pain au Chocolat, 2: Croissant, 3: Strudel, 4: Cream Puff, 5: Tartlet");
@@ -121,7 +116,8 @@ namespace Bakery
 　　　　　 　　      i;   ;|;  ;|;   ;|
 　 　 　             |;   ;|;  ;|;    ;
                     |;   ;|;  ;|;    ;|　　____,,,,,,,__
-                    |;   ;|;  ;|;     ;|‐;;            ;ヽ ");
+                    |;   ;|;  ;|;     ;|‐;;            ;ヽ 
+                    ");
         Console.WriteLine("Jiji says don't get fat!");
         Console.WriteLine("Now put in a valid pastry ID please!");
         pastryID = Console.ReadLine();
@@ -200,7 +196,7 @@ namespace Bakery
         Order.DoneOrdering();
       }
     }
-
+    
     public static void FinishOrder(int price)
     {
       Console.WriteLine(@"

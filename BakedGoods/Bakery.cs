@@ -13,7 +13,6 @@ namespace Bakery.BakedGoods
     public Order (string name)
     {
       Name = name;
-      int OrderPrice = 0;
     }
 
     public void AddToOrder(int cost)
@@ -77,6 +76,5 @@ namespace Bakery.BakedGoods
       int pastryTotalCost = Convert.ToInt32(pastryNumber * pastryPrice - Math.Floor(pastryNumber / 3));
       return pastryTotalCost;
     }
-  
   }
 }
