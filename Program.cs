@@ -26,7 +26,8 @@ namespace Bakery
         | | `. \     | |   | | `. \     | |       (   ). '.   
         | |   \ \    | |   | |   \ \    | |        | |  `\ |  
         | |    \ .   | |   | |    \ .   | |        ; '._,' '  
-       (___ ) (___) (___) (___ ) (___) (___)        '.___.'   ");
+       (___ ) (___) (___) (___ ) (___) (___)        '.___.'  
+                                                                 ");
       Console.WriteLine("We're originally known as Guchokipanya, but became famous for our delivery girl - Kiki!");
       Console.WriteLine("She's quite special! If you're lucky you might get to see her today.");
       Console.WriteLine("Can I get a name for your order?");
@@ -39,6 +40,7 @@ namespace Bakery
       {
         int price = BeginOrder();
         customer.AddToOrder(price);
+        Console.WriteLine("Your current total is: $" + customer.OrderPrice + ".");
         Continue(customer.OrderPrice);
       }
 
@@ -87,7 +89,25 @@ namespace Bakery
     public static int PastryOrder()
     {
       Pastry pastry = new Pastry("pastry", 2);
-      Console.WriteLine("How many pastries would you like today?");
+      Pastry painAuChocolat = new Pastry("pain au chocolat", 2);
+      Pastry croissant = new Pastry("croissant", 2);
+      Pastry strudel = new Pastry("strudel", 2);
+      Pastry creamPuff = new Pastry("cream puff", 2);
+      Pastry tartlet = new Pastry("tartlet", 2);
+
+      Console.WriteLine("What kind of pastry would you like?");
+      Console.WriteLine("1: Pain au Chocolat, 2: Croissant, 3: Strudel, 4: Cream Puff, 5: Tartlet");
+      Console.WriteLine("Please pick a number 1-5:");
+      string pastryID = Console.ReadLine();
+      string[] pastryName = DeterminePastry(pastryID);
+
+      if (pastryName[0] == "error")
+      {
+        Console.WriteLine("Sorry I didn't catch that! Please try again!");
+        return 0;
+      }
+
+      Console.WriteLine("How many " + pastryName[0] + " would you like today?");
       int pastryNumber = int.Parse(Console.ReadLine());
       int pastryTotalCost = Bakery.BakedGoods.Pastry.CalculatePastry(pastryNumber, pastry.Price);
 
@@ -96,8 +116,42 @@ namespace Bakery
         Console.WriteLine("You have an eye for deals! Pastries are 3 for $5!");
       }
 
-      Console.WriteLine("Your pastry total is: $" + pastryTotalCost);
+      Console.WriteLine("That will be $" + pastryTotalCost);
       return pastryTotalCost;
+    }
+
+    public static string[] DeterminePastry(string pastryID)
+    {
+      if (pastryID == "1")
+      {
+        string[] pain = {"pain au chocolat", "pains au chocolat"};
+        return pain;
+      }
+      else if (pastryID == "2")
+      {
+        string[] croissant = {"croissants", "croissant"};
+        return croissant;
+      }
+      else if (pastryID == "3")
+      {
+        string[] strudel = {"strudels", "strudel"};
+        return strudel;
+      }
+      else if (pastryID == "4")
+      {
+        string[] creamPuff = {"cream puffs", "cream puff"};
+        return creamPuff;
+      }
+      else if (pastryID == "5")
+      {
+        string[] tartlet = {"tartlets", "tartlet"};
+        return tartlet;
+      }
+      else
+      {
+        string[] error = {"error", "Please try again."};
+        return error;
+      }
     }
 
     public static void Continue(int price)
@@ -115,36 +169,37 @@ namespace Bakery
     public static void FinishOrder(int price)
     {
       Console.WriteLine(@"
-              　　　　　　　　　　　　　　　　　 　 ,.rヽ
-      　　　　　　　　　　　　　　　　　　　　   　／　　 '.,
-      　　　　　　 ,,..,,　　　　　　　　　　　 ／　　　　 ヽ、
-      　　　　　　 |　 ｀'' ‐ ､　　　　　　　/　　　　　　　 ヽ
-      　　　　 　 /　　　　　 ヽ、　　　　/　　　　　　　　　 ' ,
-      　　　　 ／　　　　　　　 ヽ　　　/　　　　　　　　　　　ヽ
-      　　　, '　　　　　　　　　　 ヽ　 .l　　　　　　　　　　　　　',
-      　　 /　　　　　　　　　　　　 ',_,.|　,　　　　　　　　　　　,.､'
-      　　/　　　　　　　　＼　　　,.r‐レ　　　　　　　　　 ,.r'´:::ヽ、
-      　 .|　　　　　　　　　　 ヽ,,/　 ./______,,,,,.... --‐ 'ヽ´::ヽ、
-      　　l　　　　　　　　 ,,..... --'‐'''´　　　｀ '' ‐ ､　　　 ヽ::::ヽ
-      　　ヽ.....,,,,..__,.-‐''´:::::::::::::::::::::::::::::::::::ヽ、　 
-      　　　..,-__'',,..,.r'::::::::::::::::::l:::::::::::::::::::::::::::::::::＼　
-      　　　　　 ／:::::::::::::::/:/l:::::::::::l::::::::::､:::::::::::::::::::::::::ヽ　
-      　　　　 .//::::::l::::::l:::l .|::l:::::::::l ､:::::ヽ ､::::ヽ､::ヽ::::::::'.,
-      　　　　 |::|:i:::::|::::/l::|　',:::',::::::::',ヽ､::::ヽヽ､.,__ヽヽ:::',.!::::ヽ＼_
-      　　　　 |:|::|:::::|:::| .l:l 　 ヽヽ､::::ヽ、‐- ､.,,, ,,...`ヽ､ ､::::::::::::::ヽ、
-      　　　　　|/.l::::i::::',:l　ヽ、　　ヽ､ヽ..,`_､-‐''´_,,.,　　 `.ヽ::,.r'''ヽ::::::::::ヽ:',
-      　　　　　l　.ヽ::',:',:: 　 ,,. -‐ ‐　 `　　　 '´〈 ﾊ'　　　 .|| .|:::::::::,.r.ヽ:ｊヽ
-      　　　　　　　 |`ヽヽ､:ヽ　     , ''|':ヽ　　　 　　　.`'　　　　 /:::::::::::,..､r''´
-      　 　 　 　 　 .|:::::`|;;;', ヽ　　ゞ.'　　　　　 　　　　 　 .／;;;',|::l ﾚヾ
-      　　　　　　　 .|::::::|;;;;;ヽ ',.　　　　 ヽ　　　　　　　　　/,´.,r‐‐'´|j
-      　　　　　　　　|:::l::::|;;;;;;;i　　　　　　 　　/        　 ,. 'l´｀''
-      　　　　　　　　 ',::l:::|,;;;;;;;ヽ　　 　　- ‐-　　　　  ／　 ',
-      　　　　　　　　　ヽl:|ヽ,.-､.,r''` .､　　　　　　　    .／　　　.',
-      　　　　　　　　　　.l|　　　　　,.'´ `'‐- ...,,,.. - '　　　　　,.ヽ--‐‐- ､
-      　　　　　　　　　　　　　　　 l:.:.:.:.:.:.:.:.:.:/ l　　　　　,.r '´:.::.:.:.:.:.:}
-      　　　　　　　　　　　　　　　 |:.:.:.:.:.:.:.:.:i　　　　 ,.r ':.:.:..:.:.:..:.:.:.ヽ、
-      　　　　　　　　　　　　　　　 |:.:.:.:.:.:.:.:.ヽ　 ,. r ':.:.:.:.::.:.::.:.:.:.:.:.:.ヽ
-      　　　　　　　　　　　　　　　 .|:.:.:.:.:.:.:.:.:.:｀´:.:.:.:.:.:..:.:.:.:.:.:.:.:.:.:.ヽ");
+        　　　　　　　　　　　　　　　　　 　 ,.rヽ
+　　　　　　　　　　　　　　　　　　　　   　／　　 '.,
+　　　　　　 ,,..,,　　　　　　　　　　　 ／　　　　 ヽ、
+　　　　　　 |　 ｀'' ‐ ､　　　　　　　/　　　　　　　 ヽ
+　　　　 　 /　　　　　 ヽ、　　　　/　　　　　　　　　 ' ,
+　　　　 ／　　　　　　　 ヽ　　　/　　　　　　　　　　　ヽ
+　　　, '　　　　　　　　　　 ヽ　 .l　　　　　　　　　　　　　',
+　　 /　　　　　　　　　　　　 ',_,.|　,　　　　　　　　　　　,.､'
+　　/　　　　　　　　＼　　　,.r‐レ　　　　　　　　　 ,.r'´:::ヽ、
+　 .|　　　　　　　　　　 ヽ,,/　 ./______,,,,,.... --‐ 'ヽ´::ヽ、
+　　l　　　　　　　　 ,,..... --'‐'''´　　　｀ '' ‐ ､　　　 ヽ::::ヽ
+　　ヽ.....,,,,..__,.-‐''´:::::::::::::::::::::::::::::::::::ヽ、　 
+　　　..,-__'',,..,.r'::::::::::::::::::l:::::::::::::::::::::::::::::::::＼　
+　　　　　 ／:::::::::::::::/:/l:::::::::::l::::::::::､:::::::::::::::::::::::::ヽ　
+　　　　 .//::::::l::::::l:::l .|::l:::::::::l ､:::::ヽ ､::::ヽ､::ヽ::::::::'.,
+　　　　 |::|:i:::::|::::/l::|　',:::',::::::::',ヽ､::::ヽヽ､.,__ヽヽ:::',.!::::ヽ＼_
+　　　　 |:|::|:::::|:::| .l:l 　 ヽヽ､::::ヽ、‐- ､.,,, ,,...`ヽ､ ､::::::::::::::ヽ、
+　　　　　|/.l::::i::::',:l　ヽ、　　ヽ､ヽ..,`_､-‐''´_,,.,　　 `.ヽ::,.r'''ヽ::::::::::ヽ:',
+　　　　　l　.ヽ::',:',:: 　 ,,. -‐ ‐　 `　　　 '´〈 ﾊ'　　　 .|| .|:::::::::,.r.ヽ:ｊヽ
+　　　　　　　 |`ヽヽ､:ヽ　     , ''|':ヽ　　　 　　　.`'　　　　 /:::::::::::,..､r''´
+　 　 　 　 　 .|:::::`|;;;', ヽ　　ゞ.'　　　　　 　　　　 　 .／;;;',|::l ﾚヾ
+　　　　　　　 .|::::::|;;;;;ヽ ',.　　　　 ヽ　　　　　　　　　/,´.,r‐‐'´|j
+　　　　　　　　|:::l::::|;;;;;;;i　　　　　　 　　/        　 ,. 'l´｀''
+　　　　　　　　 ',::l:::|,;;;;;;;ヽ　　 　　- ‐-　　　　  ／　 ',
+　　　　　　　　　ヽl:|ヽ,.-､.,r''` .､　　　　　　　    .／　　　.',
+　　　　　　　　　　.l|　　　　　,.'´ `'‐- ...,,,.. - '　　　　　,.ヽ--‐‐- ､
+　　　　　　　　　　　　　　　 l:.:.:.:.:.:.:.:.:.:/ l　　　　　,.r '´:.::.:.:.:.:.:}
+　　　　　　　　　　　　　　　 |:.:.:.:.:.:.:.:.:i　　　　 ,.r ':.:.:..:.:.:..:.:.:.ヽ、
+　　　　　　　　　　　　　　　 |:.:.:.:.:.:.:.:.ヽ　 ,. r ':.:.:.:.::.:.::.:.:.:.:.:.:.ヽ
+　　　　　　　　　　　　　　　 .|:.:.:.:.:.:.:.:.:.:｀´:.:.:.:.:.:..:.:.:.:.:.:.:.:.:.:.ヽ
+                                                                                    ");
       Console.WriteLine("Your total today is $" + price + ".");
       Console.WriteLine("See you later!");
     }
