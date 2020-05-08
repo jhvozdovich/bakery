@@ -32,6 +32,10 @@ _Have a bug or an issue with this application? [Open a new issue](https://github
 * .NET Core
 * Git and GitHub
 
+### Resources
+
+* [ASCII Text Generator](http://patorjk.com/software/taag/)
+
 ### Specs
 | Spec | Input | Output |
 | :------------- | :------------- | :------------- |
