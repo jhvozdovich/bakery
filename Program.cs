@@ -105,6 +105,28 @@ namespace Bakery
       Console.WriteLine("1: Pain au Chocolat, 2: Croissant, 3: Strudel, 4: Cream Puff, 5: Tartlet");
       Console.WriteLine("Please pick a number 1-5:");
       string pastryID = Console.ReadLine();
+
+      while (pastryID == "pancakes")
+      {
+        Console.WriteLine(@"
+　　 　 　 　　　　 　 lヽ 　 　 /l
+　　　　　　 　    　 |::|ヽ__/::|
+　　　　　　　 　 　  ／､_     ,､;ヽ
+　　　　　 　　 　 ＝|;( - |.| - );|=
+　　　　　　 　　  　 ヽ  -----  'ノ
+　　　　　　　 　 　 　 /`;;;‐'';|
+　　　　　　　   　　 |;         ;|
+　　　　　　　 　 　  |;          ;＼
+　　　　　　 　   　 i;            ;ヽ
+　　　　　 　　      i;   ;|;  ;|;   ;|
+　 　 　             |;   ;|;  ;|;    ;
+                    |;   ;|;  ;|;    ;|　　____,,,,,,,__
+                    |;   ;|;  ;|;     ;|‐;;            ;ヽ ");
+        Console.WriteLine("Jiji says don't get fat!");
+        Console.WriteLine("Now put in a valid pastry ID please!");
+        pastryID = Console.ReadLine();
+      }
+
       string[] pastryName = DeterminePastry(pastryID);
 
       while (pastryName[0] == "error")
