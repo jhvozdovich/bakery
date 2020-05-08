@@ -33,6 +33,8 @@ namespace Bakery
       Console.WriteLine("Can I get a name for your order?");
       string name = Console.ReadLine();
       Console.WriteLine("Let's get started " + name + "!");
+      Console.WriteLine("Bread is buy 2 get 1 free at $5 a loaf.");
+      Console.WriteLine("Pastries are one for $2 or 3 for $5!");
 
       Order customer = new Order(name);
 
@@ -196,7 +198,7 @@ namespace Bakery
         Order.DoneOrdering();
       }
     }
-    
+
     public static void FinishOrder(int price)
     {
       Console.WriteLine(@"
