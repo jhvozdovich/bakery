@@ -35,6 +35,7 @@ _Have a bug or an issue with this application? [Open a new issue](https://github
 ### Resources
 
 * [ASCII Text Generator](http://patorjk.com/software/taag/)
+* [Kiki ASCII Art](http://anime.en.utf8art.com/arc/kikis_delivery_service_3.html)
 
 ### Specs
 | Spec | Input | Output |
