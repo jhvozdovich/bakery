@@ -29,15 +29,15 @@ namespace Bakery
        (___ ) (___) (___) (___ ) (___) (___)        '.___.'   ");
       Console.WriteLine("We're originally known as Guchokipanya, but became famous for our delivery girl - Kiki!");
       Console.WriteLine("She's quite special! If you're lucky you might get to see her today.");
-
       Console.WriteLine("Can I get a name for your order?");
+
       string name = Console.ReadLine();
       Console.WriteLine("Let's get started " + name + "!");
 
       Order customer = new Order(name);
-      
-      BeginOrder();
-       
+
+      customer.BeginOrder();
+      Continue();
     }
 
     public static void BeginOrder()
@@ -48,11 +48,13 @@ namespace Bakery
 
       if (breadOrPastry == "b" || breadOrPastry == "bread")
       {
-        BreadOrder();
+        int breadPrice = BreadOrder();
+        Order.customer.AddToOrder(breadPrice);
       }
       else if ( breadOrPastry == "p" || breadOrPastry == "pastry")
       {
-        PastryOrder();
+        int pastryPrice = PastryOrder();
+        Order.customer.AddToOrder(pastryPrice);
       }
       else
       {
@@ -61,12 +63,12 @@ namespace Bakery
       }
     }
 
-    public static void BreadOrder()
+    public static int BreadOrder()
     {
-      Order.Bread bread = new Order.Bread("bread", 5);
+      Bread bread = new Bread("bread", 5);
       Console.WriteLine("How many loaves would you like today?");
       int breadNumber = int.Parse(Console.ReadLine());
-      int breadTotalCost = Bakery.BakedGoods.Order.Bread.CalculateBread(breadNumber, bread.Price);
+      int breadTotalCost = Bakery.BakedGoods.Bread.CalculateBread(breadNumber, bread.Price);
 
       if (breadNumber >= 3)
       {
@@ -74,19 +76,15 @@ namespace Bakery
       }
 
       Console.WriteLine("Your bread total is: $" + breadTotalCost);
-      //add complete order logic
-      Console.WriteLine("Would you like to order more? Y/N");
-
-      string continueAnswer = Console.ReadLine().ToLower();
-      Continue(continueAnswer);
+      return breadTotalCost;
     }
 
-    public static void PastryOrder()
+    public static int PastryOrder()
     {
-      Order.Pastry pastry = new Order.Pastry("pastry", 2);
+      Pastry pastry = new Pastry("pastry", 2);
       Console.WriteLine("How many pastries would you like today?");
       int pastryNumber = int.Parse(Console.ReadLine());
-      int pastryTotalCost = Bakery.BakedGoods.Order.Pastry.CalculatePastry(pastryNumber, pastry.Price);
+      int pastryTotalCost = Bakery.BakedGoods.Pastry.CalculatePastry(pastryNumber, pastry.Price);
 
       if (pastryNumber >= 3)
       {
@@ -94,15 +92,15 @@ namespace Bakery
       }
 
       Console.WriteLine("Your pastry total is: $" + pastryTotalCost);
-      //add complete order logic
+      return pastryTotalCost;
+    }
+
+    public static void Continue()
+    {
       Console.WriteLine("Would you like to order more? Y/N");
 
       string continueAnswer = Console.ReadLine().ToLower();
-      Continue(continueAnswer);
-    }
 
-    public static void Continue(string continueAnswer)
-    {
       if (continueAnswer == "y" || continueAnswer == "yes")
       {
         BeginOrder();
