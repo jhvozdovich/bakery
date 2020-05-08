@@ -26,18 +26,23 @@ namespace Bakery
         | | `. \     | |   | | `. \     | |       (   ). '.   
         | |   \ \    | |   | |   \ \    | |        | |  `\ |  
         | |    \ .   | |   | |    \ .   | |        ; '._,' '  
-       (___ ) (___) (___) (___ ) (___) (___)        '.___.'   
-       ");
-       Console.WriteLine("We're originally known as Guchokipanya, but became famous for our delivery girl - Kiki!");
-       Console.WriteLine("She's quite special! If you're lucky you might get to see her today.");
+       (___ ) (___) (___) (___ ) (___) (___)        '.___.'   ");
+      Console.WriteLine("We're originally known as Guchokipanya, but became famous for our delivery girl - Kiki!");
+      Console.WriteLine("She's quite special! If you're lucky you might get to see her today.");
 
-       BeginOrder();
+      Console.WriteLine("Can I get a name for your order?");
+      string name = Console.ReadLine();
+      Console.WriteLine("Let's get started " + name + "!");
+
+      Order customer = new Order(name);
+      
+      BeginOrder();
        
     }
 
     public static void BeginOrder()
     {
-      Console.WriteLine("What would you like to order?");
+      Console.WriteLine("What would you like?");
       Console.WriteLine("B: Bread, P: Pastry");
       string breadOrPastry = Console.ReadLine().ToLower();
 
@@ -58,10 +63,10 @@ namespace Bakery
 
     public static void BreadOrder()
     {
-      Bread bread = new Bread("bread", 5);
+      Order.Bread bread = new Order.Bread("bread", 5);
       Console.WriteLine("How many loaves would you like today?");
       int breadNumber = int.Parse(Console.ReadLine());
-      int breadTotalCost = Bakery.BakedGoods.Bread.CalculateBread(breadNumber, bread.Price);
+      int breadTotalCost = Bakery.BakedGoods.Order.Bread.CalculateBread(breadNumber, bread.Price);
 
       if (breadNumber >= 3)
       {
@@ -78,10 +83,10 @@ namespace Bakery
 
     public static void PastryOrder()
     {
-      Pastry pastry = new Pastry("pastry", 2);
+      Order.Pastry pastry = new Order.Pastry("pastry", 2);
       Console.WriteLine("How many pastries would you like today?");
       int pastryNumber = int.Parse(Console.ReadLine());
-      int pastryTotalCost = Bakery.BakedGoods.Pastry.CalculatePastry(pastryNumber, pastry.Price);
+      int pastryTotalCost = Bakery.BakedGoods.Order.Pastry.CalculatePastry(pastryNumber, pastry.Price);
 
       if (pastryNumber >= 3)
       {
@@ -104,7 +109,39 @@ namespace Bakery
       }
       else
       {
-        Console.WriteLine("add order total logic");
+        Console.WriteLine(@"
+        　　　　　　　　　　　　　　　　　 　 ,.rヽ
+　　　　　　　　　　　　　　　　　　　　   　／　　 '.,
+　　　　　　 ,,..,,　　　　　　　　　　　 ／　　　　 ヽ、
+　　　　　　 |　 ｀'' ‐ ､　　　　　　　/　　　　　　　 ヽ
+　　　　 　 /　　　　　 ヽ、　　　　/　　　　　　　　　 ' ,
+　　　　 ／　　　　　　　 ヽ　　　/　　　　　　　　　　　ヽ
+　　　, '　　　　　　　　　　 ヽ　 .l　　　　　　　　　　　　　',
+　　 /　　　　　　　　　　　　 ',_,.|　,　　　　　　　　　　　,.､'
+　　/　　　　　　　　＼　　　,.r‐レ　　　　　　　　　 ,.r'´:::::ヽ、
+　 .|　　　　　　　　　　 ヽ,,/　 ./______,,,,,.... --‐ 'ヽ´::::ヽ、
+　　l　　　　　　　　 ,,..... --'‐'''´　　　｀ '' ‐ ､　　　 ヽ::::::ヽ
+　　ヽ.....,,,,..__,.-‐''´:::::::::::::::::::::::::::::::::::ヽ、　 
+　　　..,-__'',,..,.r'::::::::::::::::::l:::::::::::::::::::::::::::::::::＼　
+　　　　　 ／:::::::::::::::/:/l:::::::::::l::::::::::､:::::::::::::::::::::::::ヽ　
+　　　　 .//::::::l::::::l:::l .|::l:::::::::l ､:::::ヽ ､::::ヽ､::ヽ::::::::'.,
+　　　　 |::|:i:::::|::::/l::|　',:::',::::::::',ヽ､::::ヽヽ､.,__ヽヽ:::',.!::::ヽ＼_
+　　　　 |:|::|:::::|:::| .l:l 　 ヽヽ､::::ヽ、‐- ､.,,, ,,...`ヽ､ ､::::::::::::::ヽ、
+　　　　　|/.l::::i::::',:l　ヽ、　　ヽ､ヽ..,`_､-‐''´_,,.,　　 `.ヽ::,.r'''ヽ::::::::::ヽ:',
+　　　　　l　.ヽ::',:',:: 　 ,,. -‐ ‐　 `　　　 '´〈 ﾊ'　　　 .|| .|:::::::::,.r.ヽ:ｊヽ
+　　　　　　　 |`ヽヽ､:ヽ　     , ''|':ヽ　　　　 　　　.`'　　　　 /:::::::::::,..､r''´
+　 　 　 　 　 .|:::::`|;;;', ヽ　　ゞ.'　　　　　 　　　　 　 .／;;;',|::l ﾚヾ
+　　　　　　　 .|::::::|;;;;;ヽ ',.　　　　 ヽ　　　　　　　　　/,´.,r‐‐'´|j
+　　　　　　　　|:::l::::|;;;;;;;i　　　　　　　　/        　 ,. 'l´｀''
+　　　　　　　　 ',::l:::|,;;;;;;;ヽ　　　　- ‐-　　　　  ／　 ',
+　　　　　　　　　ヽl:|ヽ,.-､.,r''` .､　　　　　　　    .／　　　.',
+　　　　　　　　　　.l|　　　　　,.'´ `'‐- ...,,,.. - '　　　　　,.ヽ--‐‐- ､
+　　　　　　　　　　　　　　　 l:.:.:.:.:.:.:.:.:.:/ l　　　　　,.r '´:.::.:.:.:.:.:}
+　　　　　　　　　　　　　　　 |:.:.:.:.:.:.:.:.:i　　　　 ,.r ':.:.:..:.:.:..:.:.:.ヽ、
+　　　　　　　　　　　　　　　 |:.:.:.:.:.:.:.:.ヽ　 ,. r ':.:.:.:.::.:.:.:.:.:.:.:.:.:.:.:.:.ヽ
+　　　　　　　　　　　　　　　 .|:.:.:.:.:.:.:.:.:.:｀´:.:.:.:.:.:..:.:.:.:.:.:.:.:.:..:.:.:.:.:.:.:.ヽ");
+        Console.WriteLine("Your total today is $" + Order.OrderPrice + ".");
+        Console.WriteLine("See you later!");
       }
     }
   }
