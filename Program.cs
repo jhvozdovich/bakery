@@ -6,11 +6,9 @@ namespace Bakery
 {
   public class Program
   {
+    
     public static void Main()
     {
-      Bread bread = new Bread("bread", 5);
-      Pastry pastry = new Pastry("pastry", 2);
-
       Console.WriteLine(@"
       ,--.   ,--.       ,--.                                  ,--------. ,-----.  
       |  |   |  | ,---. |  | ,---. ,---. ,--,--,--. ,---.     '--.  .--''  .-.  ' 
@@ -32,7 +30,9 @@ namespace Bakery
        ");
        Console.WriteLine("We're originally known as Guchokipanya, but became famous for our delivery girl - Kiki!");
        Console.WriteLine("She's quite special! If you're lucky you might get to see her today.");
+
        BeginOrder();
+       
     }
 
     public static void BeginOrder()
@@ -58,16 +58,17 @@ namespace Bakery
 
     public static void BreadOrder()
     {
+      Bread bread = new Bread("bread", 5);
       Console.WriteLine("How many loaves would you like today?");
       int breadNumber = int.Parse(Console.ReadLine());
-      int breadTotalCost = Bakery.BakedGoods.Bread.CalculateBread(breadNumber, Bread.Price);
+      int breadTotalCost = Bakery.BakedGoods.Bread.CalculateBread(breadNumber, bread.Price);
 
       if (breadNumber >= 3)
       {
         Console.WriteLine("Lucky you! Bread is buy 2 get 1 free today!");
       }
 
-      Console.WriteLine("Your pastry total is: $" + breadTotalCost);
+      Console.WriteLine("Your bread total is: $" + breadTotalCost);
       //add complete order logic
       Console.WriteLine("Would you like to order more? Y/N");
 
@@ -77,9 +78,10 @@ namespace Bakery
 
     public static void PastryOrder()
     {
+      Pastry pastry = new Pastry("pastry", 2);
       Console.WriteLine("How many pastries would you like today?");
       int pastryNumber = int.Parse(Console.ReadLine());
-      int pastryTotalCost = Bakery.BakedGoods.Pastry.CalculatePastry(pastryNumber, Pastry.Price);
+      int pastryTotalCost = Bakery.BakedGoods.Pastry.CalculatePastry(pastryNumber, pastry.Price);
 
       if (pastryNumber >= 3)
       {

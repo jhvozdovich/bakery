@@ -25,7 +25,7 @@ namespace Bakery.BakedGoods
     public static int CalculateBread(double breadNumber, int breadPrice)
     {
       int breadDeal = Convert.ToInt32(breadNumber - Math.Floor(breadNumber / 3));
-      int breadTotalCost = breadDeal * Price;
+      int breadTotalCost = breadDeal * breadPrice;
       return breadTotalCost;
     }
   }
