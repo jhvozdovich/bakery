@@ -1,3 +1,5 @@
+using System;
+
 namespace Bakery.BakedGoods
 {
   public class BakeryItems
@@ -19,6 +21,13 @@ namespace Bakery.BakedGoods
       Name = name;
       Price = price;
     }
+
+    public static int CalculateBread(int breadNumber, int breadPrice)
+    {
+      int breadDeal = breadNumber - Math.Floor(breadNumber / 3);
+      int breadTotalCost = breadDeal * Price;
+      return breadTotalCost;
+    }
   }
 
   public class Pastry : BakeryItems
@@ -28,5 +37,14 @@ namespace Bakery.BakedGoods
       Name = name;
       Price = price;
     }
+
+    public static int CalculatePastry(int pastryNumber, int pastryPrice)
+    {
+      int pastryTotalCost = pastryNumber * pastryPrice - Math.Floor(pastryNumber / 3);
+      return pastryTotalCost;
+    }
   }
+
+  
+
 }
