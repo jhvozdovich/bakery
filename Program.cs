@@ -74,7 +74,13 @@ namespace Bakery
     {
       Bread bread = new Bread("bread", 5);
       Console.WriteLine("How many loaves would you like today?");
-      int breadNumber = int.Parse(Console.ReadLine());
+      string breadString = Console.ReadLine();
+      while (!Int32.TryParse(breadString, out int result))
+      {
+        Console.WriteLine("Sorry I didn't catch that! Please enter a number of loaves.");
+        breadString = Console.ReadLine();
+      }
+      int breadNumber = int.Parse(breadString);
       int breadTotalCost = Bakery.BakedGoods.Bread.CalculateBread(breadNumber, bread.Price);
 
       if (breadNumber >= 3)
@@ -101,14 +107,21 @@ namespace Bakery
       string pastryID = Console.ReadLine();
       string[] pastryName = DeterminePastry(pastryID);
 
-      if (pastryName[0] == "error")
+      while (pastryName[0] == "error")
       {
-        Console.WriteLine("Sorry I didn't catch that! Please try again!");
-        return 0;
+        Console.WriteLine("Sorry I didn't catch that! Please enter a valid pastry ID number.");
+        pastryID = Console.ReadLine();
+        pastryName = DeterminePastry(pastryID);
       }
 
       Console.WriteLine("How many " + pastryName[0] + " would you like today?");
-      int pastryNumber = int.Parse(Console.ReadLine());
+      string pastryString = Console.ReadLine();
+      while (!Int32.TryParse(pastryString, out int result))
+      {
+        Console.WriteLine("Sorry I didn't catch that! Please enter a number of pastries.");
+        pastryString = Console.ReadLine();
+      }
+      int pastryNumber = int.Parse(pastryString);
       int pastryTotalCost = Bakery.BakedGoods.Pastry.CalculatePastry(pastryNumber, pastry.Price);
 
       if (pastryNumber >= 3)
@@ -149,7 +162,7 @@ namespace Bakery
       }
       else
       {
-        string[] error = {"error", "Please try again."};
+        string[] error = {"error", "error"};
         return error;
       }
     }
