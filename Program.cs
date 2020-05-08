@@ -30,17 +30,17 @@ namespace Bakery
       Console.WriteLine("We're originally known as Guchokipanya, but became famous for our delivery girl - Kiki!");
       Console.WriteLine("She's quite special! If you're lucky you might get to see her today.");
       Console.WriteLine("Can I get a name for your order?");
-
       string name = Console.ReadLine();
       Console.WriteLine("Let's get started " + name + "!");
 
       Order customer = new Order(name);
 
-      customer.BeginOrder();
+      int price = BeginOrder();
+      customer.AddToOrder(price);
       Continue();
     }
 
-    public static void BeginOrder()
+    public static int BeginOrder()
     {
       Console.WriteLine("What would you like?");
       Console.WriteLine("B: Bread, P: Pastry");
@@ -49,17 +49,17 @@ namespace Bakery
       if (breadOrPastry == "b" || breadOrPastry == "bread")
       {
         int breadPrice = BreadOrder();
-        Order.customer.AddToOrder(breadPrice);
+        return breadPrice;
       }
       else if ( breadOrPastry == "p" || breadOrPastry == "pastry")
       {
         int pastryPrice = PastryOrder();
-        Order.customer.AddToOrder(pastryPrice);
+        return pastryPrice;
       }
       else
       {
         Console.WriteLine("Sorry! I didn't catch that!");
-        BeginOrder();
+        return 0;
       }
     }
 
