@@ -36,15 +36,15 @@ namespace Bakery
 
       Order customer = new Order(name);
 
-      while (Order.ContinueOrdering == true)
+      while (Order.GetContinueOrdering() == true)
       {
         int price = BeginOrder();
         customer.AddToOrder(price);
-        Console.WriteLine("Your current total is: $" + customer.OrderPrice + ".");
-        Continue(customer.OrderPrice);
+        Console.WriteLine("Your current total is: $" + customer.GetOrderPrice() + ".");
+        Continue(customer.GetOrderPrice());
       }
 
-      FinishOrder(customer.OrderPrice);
+      FinishOrder(customer.GetOrderPrice());
     }
 
     public static int BeginOrder()
@@ -124,7 +124,7 @@ namespace Bakery
     {
       if (pastryID == "1")
       {
-        string[] pain = {"pain au chocolat", "pains au chocolat"};
+        string[] pain = {"pains au chocolat", "painAuChocolat"};
         return pain;
       }
       else if (pastryID == "2")
@@ -139,7 +139,7 @@ namespace Bakery
       }
       else if (pastryID == "4")
       {
-        string[] creamPuff = {"cream puffs", "cream puff"};
+        string[] creamPuff = {"cream puffs", "creamPuff"};
         return creamPuff;
       }
       else if (pastryID == "5")
